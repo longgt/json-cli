@@ -10,6 +10,7 @@ export default class Beautify extends Command {
   static flags = {
     help: flags.help({char: 'h'}),
     verbose: flags.boolean({char: 'v'}),
+    space: flags.integer({char: 's', default: 2}),
   };
 
   static args = [{name: 'dir'}];
@@ -23,7 +24,7 @@ export default class Beautify extends Command {
       const files = await find(cwd)
       const asyncResults = []
       for (const file of files) {
-        asyncResults.push(this.beautify(file))
+        asyncResults.push(this.beautify(file, {space: flags.space}))
       }
 
       const results = await Promise.all(asyncResults)
@@ -45,7 +46,7 @@ export default class Beautify extends Command {
     cli.action.stop()
   }
 
-  beautify(file: string) {
+  beautify(file: string, options: {space: number}) {
     return new Promise<{result?: boolean; detail?: any; file?: string}>(resolve => {
       fs.readFile(file, 'utf8', (err, data) => {
         if (err) {
@@ -54,7 +55,7 @@ export default class Beautify extends Command {
           data = stripBOM(data)
           try {
             const json = JSON.parse(data)
-            const beautifiedJson = JSON.stringify(json, null, 2)
+            const beautifiedJson = JSON.stringify(json, null, options.space)
             fs.writeFile(file, beautifiedJson, 'utf8', err => {
               if (err) {
                 resolve({result: false, detail: err, file})
