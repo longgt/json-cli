@@ -11,6 +11,7 @@
     "@oclif/config": "^1.16.0",
     "@oclif/plugin-help": "^3.1.0",
     "chalk": "^4.1.0",
+    "cli-ux": "^5.6.3",
     "glob": "^7.1.6",
     "tslib": "^1.13.0"
   },
@@ -49,6 +50,7 @@
   },
   "repository": "NPM_Tools/json-cli",
   "scripts": {
+    "build": "npm run prepack && npm run postpack && npm pack",
     "postpack": "rimraf oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
