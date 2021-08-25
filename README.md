@@ -41,11 +41,12 @@ USAGE
   $ json beautify [DIR]
 
 OPTIONS
-  -h, --help     show CLI help
+  -h, --help         show CLI help
+  -s, --space=space  [default: 2]
   -v, --verbose
 ```
 
-_See code: [src\commands\beautify.ts](https://github.com/NPM_Tools/json-cli/blob/v1.0.0/src\commands\beautify.ts)_
+_See code: [src/commands/beautify.ts](https://github.com/NPM_Tools/json-cli/blob/v1.0.0/src/commands/beautify.ts)_
 
 ## `json help [COMMAND]`
 
@@ -62,7 +63,7 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.1.0/src\commands\help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
 
 ## `json validate [DIR]`
 
@@ -77,5 +78,5 @@ OPTIONS
   -v, --verbose
 ```
 
-_See code: [src\commands\validate.ts](https://github.com/NPM_Tools/json-cli/blob/v1.0.0/src\commands\validate.ts)_
+_See code: [src/commands/validate.ts](https://github.com/NPM_Tools/json-cli/blob/v1.0.0/src/commands/validate.ts)_
 <!-- commandsstop -->
