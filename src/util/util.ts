@@ -1,7 +1,13 @@
 import * as glob from 'glob'
-export function find(cwd: string): Promise<string[]> {
+
+export type FindOptions = {
+  includeSubDirs?: boolean;
+}
+
+export function find(cwd: string, options: FindOptions = { includeSubDirs : false }): Promise<string[]> {
+  const globPattern = options.includeSubDirs ? '**/*.json' : '*.json';
   return new Promise((resolve, reject) => {
-    glob('**/*.json', {cwd, absolute: true, nodir: true, ignore: '**/{node_modules,www,target,build,dist}/**'}, (err, files) => {
+    glob(globPattern, {cwd, absolute: true, nodir: true, ignore: '**/{node_modules,www,target,build,dist}/**'}, (err, files) => {
       if (err) {
         reject(err)
       } else {
